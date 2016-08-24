@@ -19,8 +19,7 @@ User.prototype.dieroll = function(){
 }
 
 var player1 = new User();
-player1.turnScore = player1.dieroll();
-//alert(player1.turnScore);
+
 
 
 
@@ -55,7 +54,13 @@ player1.turnScore = player1.dieroll();
 
 //User Logic
 $(document).ready(function() {
-
-    event.preventDefault();
+  //event.preventDefault();
+    $("#user-roll").click(function() {
+      player1.turnScore = player1.dieroll();
+      alert(player1.turnScore);
+    });
+    $("#hold-roll").click(function() {
+      
+    });
 
 });
