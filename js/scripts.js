@@ -1,66 +1,46 @@
 //Business Logic
-function User(totalScore, turnScore, endgame ) {
+var userDieResult = 0;
+var userTurnResult = 0;
+
+function User(totalScore, turnScore, dieScore, endgame ) {
   this.totalScore = totalScore;
   this.turnScore = turnScore;
+  this.dieScore = dieScore;
   this.endgame = endgame;
-
 }
 
-function Comp(totalScore, turnScore, endgame ) {
+function Comp(totalScore, turnScore, dieScore, endgame ) {
   this.totalScore = totalScore;
   this.turnScore = turnScore;
+  this.dieScore = dieScore;
   this.endgame = endgame;
-
 }
 //prototypes - rng, CompLogic, hold, rolled1
 User.prototype.dieroll = function(){
-  var dieResult = Math.floor(Math.random() * 6) + 1;
-  return dieResult;
+  userDieResult = parseInt(Math.floor(Math.random() * 6) + 1);
+  return userDieResult;
 }
 
-var player1 = new User();
-
-
-
-
-
-
-
-
-
-// User.prototype.typename = function(){
-//
-// }
-// User.prototype.typename = function(){
-//
-// }
-// User.prototype.typename = function(){
-//
-// }
-//
-//
-// Comp.prototype.typename = function(){
-//
-// }
-// Comp.prototype.typename = function(){
-//
-// }
-// Comp.prototype.typename = function(){
-//
-// }
-// Comp.prototype.typename = function(){
-//
-// }
+User.prototype.addRoll = function(){
+  userTurnResult += userDieResult;
+  return userTurnResult;
+}
 
 //User Logic
 $(document).ready(function() {
   //event.preventDefault();
+  var player1 = new User();
+
     $("#user-roll").click(function() {
-      player1.turnScore = player1.dieroll();
-      alert(player1.turnScore);
+      player1.dieScore = player1.dieroll();
+      player1.turnScore = player1.addRoll();
+
+      $("#dieScore").text(player1.dieScore);
+      $("#turnScore").text(player1.turnScore);
+
     });
     $("#hold-roll").click(function() {
-      
+
     });
 
 });

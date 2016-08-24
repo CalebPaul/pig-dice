@@ -7,7 +7,7 @@ What will happen when a user clicks "Play"?
 
 What objects will you need? What functions?
   * Objects - User, Comp,
-  * Constructors - RNG, Hold, Rolled1, EndGame, Score, CompLogic
+  * Constructors - Score, RNG, Hold, Rolled1, EndGame, CompLogic
 
 How will these be triggered throughout the gameplay?
   * User.Score + CompScore - updates with dice roll value with the exception of '1' rolls
