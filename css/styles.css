@@ -1,3 +1,11 @@
 .container {
   width: 85%;
 }
+
+.btn {
+
+}
+
+.hidden {
+  display: none;
+}
