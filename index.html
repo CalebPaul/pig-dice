@@ -2,6 +2,7 @@
 <html>
   <head>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="js/jquery-3.1.0.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
@@ -10,10 +11,13 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="well text-center">Pig Dice</h1>
+      <h1 class="well text-center animated slideInLeft">Pig Dice</h1>
       <div class="row">
-        <div class="well col-md-3">
-          <h3 class="page-header text-center">Rules</h3>
+        <div class="well col-md-4">
+
+
+
+          <h3 class="page-header text-center animated slideInLeft">Rules</h3>
           <p>Each turn, a player repeatedly rolls a die until either a 1 is rolled or the player decides to "hold":</p>
           <ul>
             <li>If the player rolls a 1, they score nothing and it becomes the next player's turn.</li>
@@ -21,22 +25,27 @@
             <li>If a player chooses to "hold", their turn total is added to their score, and it becomes the next player's turn.</li>
           </ul>
           <p>The first player to score 100 or more points wins.</p>
+
         </div>
 
-        <div class="text-center well col-sm-offset-1 col-md-3">
-          <h3 class="page-header text-center">User</h3>
+        <div class="text-center col-md-3 well col-md-offset-1">
+
+          <h3 class="page-header text-center animated fadeInUpBig">User</h3>
           <p>Total score: <span id="totalScore"></span></p>
           <p>Turn score: <span id="turnScore"></span></p>
           <p>Die roll: <span id="dieScore"></span></p>
           <span class="btn btn-primary" id="user-roll">Roll!</span>
           <span class="btn btn-danger" id="hold-roll">Hold!</span>
+
         </div>
 
-        <div class="text-center well col-sm-offset-1 col-md-3">
-          <h3 class="page-header text-center">Computer</h3>
+        <div class="text-center well col-md-3 col-md-offset-1">
+
+          <h3 class="page-header text-center animated animated slideInRight">Computer</h3>
           <p>Total score: <span id="compTotalScore"></span></p>
           <p>Turn score: <span id="compTurnScore"></span></p>
           <p>Die roll: <span id="compDieScore"></span></p>
+
         </div>
       </div>
 

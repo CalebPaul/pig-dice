@@ -23,7 +23,7 @@ User.prototype.addRoll = function(){
   if (userDieResult === 1) {
       userDieResult = 0;
       alert("User rolled 1, Comp turn")
-      $(".btn").fadeOut(80);
+      buttonFadeOut()
     }
   userTurnResult += userDieResult;
   return userTurnResult;
@@ -59,7 +59,6 @@ Comp.prototype.total = function(){
   return compTotalScore;
 }
 //User Logic
-
 function buttonFadeIn(){
   $(".btn").fadeIn(1000);
 }
@@ -71,49 +70,60 @@ $(document).ready(function() {
   //event.preventDefault();
   var player1 = new User();
   var comp1 = new Comp();
+  function compLogic(){
+    var logic = function(i) {
+      console.log("before timeout: " + i);
+      setTimeout(function(){
+        console.log("timeout: " + i)
+       if (i <= 5){
+         comp1.dieScore = comp1.dieroll();
+         comp1.turnScore = comp1.addRoll();
+         $("#compDieScore").text(comp1.dieScore);
+         $("#compTurnScore").text(comp1.turnScore);
+
+         if (comp1.dieScore === 1) {
+           alert("comp rolled 1");
+           i = 8
+         }
+          else if (i === 5) {
+           comp1.totalScore = comp1.total();
+           $("#compTotalScore").text(comp1.totalScore);
+           $("#compTurnScore").text(0);
+           alert("comp holds");
+         }
+         return logic(i += 1);
+       }
+        else
+        {
+          alert("your turn");
+          buttonFadeIn();
+           return i;
+       } }, 825);
+   };
+   logic(0);
+  }
 
     $("#user-roll").click(function() {
       player1.dieScore = player1.dieroll();
       player1.turnScore = player1.addRoll();
       $("#dieScore").text(player1.dieScore);
       $("#turnScore").text(player1.turnScore);
+      if (player1.dieScore === 1) {
+        compLogic();
+      }
     });
     $("#hold-roll").click(function() {
       buttonFadeOut();
       player1.totalScore = player1.total();
       $("#totalScore").text(player1.totalScore);
       $("#turnScore").text(0);
+      if (player1.totalScore >= 15) {
+        alert("player wins!");
+      } else {
       //computer's turn
-      var compLogic = function(i) {
-        console.log("before timeout: " + i);
-        setTimeout(function(){
-          console.log("timeout: " + i)
-         if (i <= 5){
-           comp1.dieScore = comp1.dieroll();
-           comp1.turnScore = comp1.addRoll();
-           $("#compDieScore").text(comp1.dieScore);
-           $("#compTurnScore").text(comp1.turnScore);
+      compLogic();
+      }
 
-           if (comp1.dieScore === 1) {
-             alert("comp rolled 1");
-             i = 8
-             // print comp rolled 1 , user turn
-             //comp held, user turn
-           } else if (i === 5) {
-             comp1.totalScore = comp1.total();
-             $("#compTotalScore").text(comp1.totalScore);
-             $("#compTurnScore").text(0);
-             alert("comp holds");
-           }
-           return compLogic(i += 1);
-         }
-          else
-          {
-            alert("your turn");
-            buttonFadeIn();
-             return i;
-         } }, 625);
-     };
-     compLogic(0);
+
     });
 });
