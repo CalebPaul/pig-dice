@@ -71,10 +71,69 @@ $(document).ready(function() {
       player1.totalScore = player1.total();
       $("#totalScore").text(player1.totalScore);
       //computer's turn
-      comp1.dieScore = comp1.dieroll();
-      comp1.turnScore = comp1.addRoll();
-      $("#compDieScore").text(comp1.dieScore);
-      $("#compTurnScore").text(comp1.turnScore);
-    });
+      var compLogic = function(i) {
+        console.log("before timeout: " + i);
+        setTimeout(function(){
+          console.log("timeout: " + i)
+         if (i <= 5)
+         {
+           comp1.dieScore = comp1.dieroll();
+           comp1.turnScore = comp1.addRoll();
+           $("#compDieScore").text(comp1.dieScore);
+           $("#compTurnScore").text(comp1.turnScore);
 
+           if (comp1.dieScore === 1) {
+             alert(comp1.dieScore);
+             i = 8
+             // print comp rolled 1 , user turn
+             //comp held, user turn
+           }
+           return compLogic(i += 1);
+         }
+          else
+          {
+            alert("else");
+             return i;
+         } }, 625);
+     };
+     compLogic(0);
+    });
 });
+//
+// for (var i = 0; i <= 7; i++)(function(i) {
+//     setTimeout(function() {
+//       alert(valArray[i]);
+//     }, i * 500);
+//   })(i);
+//
+//   var compLogic = function(i) {
+//  setTimeout(function(){
+//      if (i <= 7)
+//      {
+//        comp1.dieScore = comp1.dieroll();
+//        comp1.turnScore = comp1.addRoll();
+//        $("#compDieScore").text(comp1.dieScore);
+//        $("#compTurnScore").text(comp1.turnScore);
+//        alert("if");
+//          return compLogic(i++);
+//      }
+//       else
+//       {
+//         alert("else");
+//          return i;
+//      }
+//  },i * 200);
+//  };
+//  compLogic(0);
+//
+//  var countdown = function(value) {
+// setTimeout(function(){
+//     if (value > 0) {
+//         console.log(value);
+//         return countdown(value - 1);
+//     } else {
+//         return value;
+//     }
+// },value * 200);
+// };
+// countdown(10);
